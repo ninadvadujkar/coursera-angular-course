@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatToolbarModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatGridListModule, MatCardModule, MatButtonModule } from '@angular/material';
 
 import 'hammerjs';
 
@@ -24,7 +24,9 @@ import { MenuComponent } from './menu/menu.component';
     HttpModule,
     FlexLayoutModule,
     MatToolbarModule,
-    MatListModule
+    MatGridListModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
