@@ -3,11 +3,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { 
   MatToolbarModule, MatGridListModule, MatCardModule, 
   MatButtonModule, MatListModule, MatIconModule, MatDialogModule,
-  MatInputModule, MatCheckboxModule    
+  MatInputModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule
 } from '@angular/material';
 
 import 'hammerjs';
@@ -46,6 +47,7 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     MatToolbarModule,
     MatGridListModule,
@@ -56,7 +58,9 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     MatDialogModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ],
   providers: [
     DishService,
