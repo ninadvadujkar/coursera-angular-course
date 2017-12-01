@@ -4,7 +4,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatToolbarModule, MatGridListModule, MatCardModule, MatButtonModule, MatListModule, MatIconModule } from '@angular/material';
+import { 
+  MatToolbarModule, MatGridListModule, MatCardModule, 
+  MatButtonModule, MatListModule, MatIconModule, MatDialogModule,
+  MatInputModule, MatCheckboxModule    
+} from '@angular/material';
 
 import 'hammerjs';
 
@@ -22,6 +26,7 @@ import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -33,7 +38,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,13 +53,17 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     MatButtonModule,
     MatListModule,
     MatIconModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService
   ],
+  entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
