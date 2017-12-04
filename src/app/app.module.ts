@@ -8,7 +8,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { 
   MatToolbarModule, MatGridListModule, MatCardModule, 
   MatButtonModule, MatListModule, MatIconModule, MatDialogModule,
-  MatInputModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule
+  MatInputModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import 'hammerjs';
@@ -60,7 +61,8 @@ import { LoginComponent } from './login/login.component';
     MatInputModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     DishService,
