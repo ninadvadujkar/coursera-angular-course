@@ -43,45 +43,46 @@ fxLayoutGap="10px">
     <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-input-container class="half-width" 
-        dividerColor="{{ feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').dirty ? 'warn' : 'primary' }}">
+          dividerColor="{{ formErrors.firstname ? 'warn' : 'primary' }}">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required />
           <mat-hint>
-            <span [hidden]="feedbackForm.get('firstname').pristine">
-              <span [hidden]="!feedbackForm.get('firstname').hasError('required')">USERNAME IS REQUIRED!</span>
+            <span [hidden]="!(formErrors.firstname)"> 
+              {{formErrors.firstname}}
             </span>
-            <!--<span [hidden]="!(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched)"> 
-              Firstname is required!
-            </span>-->
           </mat-hint>
         </mat-input-container>
+        
         <mat-input-container class="half-width"
-        dividerColor="{{ feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').dirty ? 'warn' : 'primary' }}">
-            <input matInput formControlName="lastname" placeholder="Last Name" type="text" required />
-            <mat-hint>
-                <span [hidden]="!(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched)"> 
-                  Lastname is required!
-                </span>
-              </mat-hint>
+          dividerColor="{{ formErrors.lastname ? 'warn' : 'primary' }}">
+          <input matInput formControlName="lastname" placeholder="Last Name" type="text" required />
+          <mat-hint>
+            <span [hidden]="!(formErrors.lastname)"> 
+              {{formErrors.lastname}}
+            </span>
+          </mat-hint>
         </mat-input-container>
+        
         <mat-input-container class="half-width"
-        dividerColor="{{ feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').dirty ? 'warn' : 'primary' }}">
-            <input matInput formControlName="telnum" placeholder="Telephone Number" type="tel" required />
+          dividerColor="{{ formErrors.telnum ? 'warn' : 'primary' }}">
+          <input matInput formControlName="telnum" placeholder="Telephone Number" type="tel" pattern="[0-9]*" required />
             <mat-hint>
-                <span [hidden]="!(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched)"> 
-                  Tel No is required!
-                </span>
-              </mat-hint>
+              <span [hidden]="!(formErrors.telnum)"> 
+                {{formErrors.telnum}}
+              </span>
+            </mat-hint>
         </mat-input-container>      
+        
         <mat-input-container class="half-width"
-        dividerColor="{{ feedbackForm.get('email').hasError('email') && feedbackForm.get('firstname').dirty ? 'warn' : 'primary' }}">
-            <input matInput formControlName="email" placeholder="Email" type="email" required />
-            <mat-hint>
-                <span [hidden]="!(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched)"> 
-                  Email is required!
-                </span>
-              </mat-hint>
+          dividerColor="{{ formErrors.email ? 'warn' : 'primary' }}">
+          <input matInput formControlName="email" placeholder="Email" type="email" email required />
+          <mat-hint>
+            <span [hidden]="!(formErrors.email)"> 
+              {{formErrors.email}}
+            </span>
+          </mat-hint>
         </mat-input-container>
       </p>
+
       <table class="form-size">
         <td>
           <mat-slide-toggle formControlName="agree" (change)="onToggle($event)">May we contact you?</mat-slide-toggle>
@@ -95,6 +96,7 @@ fxLayoutGap="10px">
           </mat-select>
         </td>
       </table>
+
       <p>
         <mat-input-container class="full-width">
           <textarea matInput formControlName="message" placeholder="Your feedback" rows="5"></textarea>
