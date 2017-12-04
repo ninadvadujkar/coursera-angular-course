@@ -12,6 +12,9 @@ import {
   MatProgressSpinnerModule, MatSliderModule
 } from '@angular/material';
 
+import { baseURL } from './shared/baseurl';
+import { ProcessHttpmsgService } from './services/process-httpmsg.service';
+ 
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -68,7 +71,9 @@ import { LoginComponent } from './login/login.component';
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    ProcessHttpmsgService,
+    {provide: 'BaseURL', useValue: baseURL}
   ],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
