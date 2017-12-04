@@ -40,7 +40,38 @@ fxLayoutGap.xs="0">
       <p matLine>{{comment.rating}} Stars</p>
       <p matLine>-- {{comment.author}} {{comment.date | date}}</p>
     </mat-list-item>
+    <mat-list-item *ngIf="!(commentForm.invalid)">
+      <h3 matLine>{{commentForm.get('comment').value}}</h3>
+      <p matLine>{{commentForm.get('rating').value}} Stars</p>
+      <p matLine>-- {{commentForm.get('author').value}}</p>
+    </mat-list-item>
   </mat-list>
+  <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="form-size">
+      <p>
+        <mat-input-container dividerColor="{{formErrors.author ? 'warn' : 'primary'}}">
+          <input matInput formControlName="author" type="text" placeholder="Name" required/>
+          <mat-hint>
+            <span [hidden]="!(formErrors.author)">
+              {{formErrors.author}}
+            </span>
+          </mat-hint> 
+        </mat-input-container>
+        <br/>
+        
+        <mat-slider thumbLabel step="1" tickInterval="1"  min="1" max="5" formControlName="rating"></mat-slider>
+        <br/>
+        
+        <mat-input-container dividerColor="{{formErrors.comment ? 'warn' : 'primary'}}">
+          <textarea matInput formControlName="comment" rows="8" placeholder="Your comment" required></textarea>
+            <mat-hint>
+              <span [hidden]="!(formErrors.comment)">
+                {{formErrors.comment}}
+              </span>
+            </mat-hint>
+        </mat-input-container>
+      </p>    
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+    </form>
 </div>
 
 <div [hidden]="dish">

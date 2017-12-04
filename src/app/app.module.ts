@@ -9,7 +9,7 @@ import {
   MatToolbarModule, MatGridListModule, MatCardModule, 
   MatButtonModule, MatListModule, MatIconModule, MatDialogModule,
   MatInputModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, MatSliderModule
 } from '@angular/material';
 
 import 'hammerjs';
@@ -62,7 +62,8 @@ import { LoginComponent } from './login/login.component';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSliderModule
   ],
   providers: [
     DishService,
