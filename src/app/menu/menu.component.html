@@ -17,7 +17,10 @@
         </mat-grid-tile>
       </mat-grid-list>
   </div>
-  <div [hidden]="dishes || errMess">
+  <!--<div [hidden]="dishes || errMess">
+    <mat-spinner></mat-spinner> <h4>Loading... Please wait!</h4>
+  </div>-->
+  <div *ngIf="!dishes && !errMess">
     <mat-spinner></mat-spinner> <h4>Loading... Please wait!</h4>
   </div>
   <div *ngIf="errMess">

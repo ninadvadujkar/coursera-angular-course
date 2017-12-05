@@ -11,6 +11,8 @@ import {
   MatInputModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule,
   MatProgressSpinnerModule, MatSliderModule
 } from '@angular/material';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
 
 import { baseURL } from './shared/baseurl';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
@@ -66,7 +68,8 @@ import { LoginComponent } from './login/login.component';
     MatSlideToggleModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatSliderModule
+    MatSliderModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [
     DishService,
