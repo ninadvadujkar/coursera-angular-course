@@ -28,6 +28,9 @@ export class DishService {
     return this._http.get(baseURL + 'dishes/' + id)
       .map(res => {
         return this._processHttpMsgService.extractData(res);
+      })
+      .catch(error => { 
+        return this._processHttpMsgService.handleError(error);
       });
   }
 
@@ -35,6 +38,9 @@ export class DishService {
     return this._http.get(baseURL + 'dishes?featured=true')
       .map(res => {
         return this._processHttpMsgService.extractData(res)[0];
+      })
+      .catch(error => { 
+        return this._processHttpMsgService.handleError(error);
       });
   }
 
@@ -42,6 +48,9 @@ export class DishService {
     return this.getDishes()
       .map(dishes => {
         return dishes.map(dish => dish.id);
+      })
+      .catch(error => { 
+        return this._processHttpMsgService.handleError(error);
       });
   }
 }
