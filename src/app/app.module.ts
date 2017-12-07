@@ -9,7 +9,8 @@ import {
   MatToolbarModule, MatGridListModule, MatCardModule, 
   MatButtonModule, MatListModule, MatIconModule, MatDialogModule,
   MatInputModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule,
-  MatProgressSpinnerModule, MatSliderModule
+  MatProgressSpinnerModule, MatSliderModule, MatPaginatorModule,
+  MatTableModule
 } from '@angular/material';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { RestangularConfigFactory } from './shared/restConfig';
@@ -31,11 +32,11 @@ import { ContactComponent } from './contact/contact.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { FeedbackService } from './services/feedback.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { HighlightDirective } from './directives/highlight.directive';
-
 
 @NgModule({
   declarations: [
@@ -67,16 +68,20 @@ import { HighlightDirective } from './directives/highlight.directive';
     MatDialogModule,
     MatInputModule,
     MatCheckboxModule,
-    MatSlideToggleModule,
+     MatSlideToggleModule,
     MatSelectModule,
     MatProgressSpinnerModule,
     MatSliderModule,
-    RestangularModule.forRoot(RestangularConfigFactory)
+    RestangularModule.forRoot(RestangularConfigFactory),
+
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService,
+    FeedbackService,
     ProcessHttpmsgService,
     {provide: 'BaseURL', useValue: baseURL}
   ],

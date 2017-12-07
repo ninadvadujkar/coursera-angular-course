@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response } from '@angular/http';
+import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { Promotion } from '../shared/promotion';
 import { baseURL } from '../shared/baseurl';
@@ -14,27 +15,31 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class PromotionService {
 
-  constructor(private _http: Http, private _processHttpmsgService: ProcessHttpmsgService) { }
+  constructor(private _http: Http, private _processHttpmsgService: ProcessHttpmsgService, private _restangular: Restangular) { }
 
   getPromotions(): Observable<Promotion[]> {
-    return this._http.get(baseURL + 'promotions')
+    return this._restangular.all('promotions').getList();
+    /*return this._http.get(baseURL + 'promotions')
       .map(res => {
         return this._processHttpmsgService.extractData(res);
-      });
+      });*/
   }
 
   getPromotion(id: number): Observable<Promotion> {
-    return this._http.get(baseURL + 'promotions/' + id)
+    return this._restangular.one('promotions', id).get();
+    /*return this._http.get(baseURL + 'promotions/' + id)
       .map(res => {
         return this._processHttpmsgService.extractData(res);
-      });
+      });*/
   }
 
   getFeaturedPromotion(): Observable<Promotion> {
-    return this._http.get(baseURL + 'promotions?featured=true')
+    return this._restangular.all('promotions').getList({featured: true})
+    .map(promotions => promotions[0]);    
+    /*return this._http.get(baseURL + 'promotions?featured=true')
     .map(res => {
       return this._processHttpmsgService.extractData(res)[0];
-    });
+    });*/
   }
 
 }

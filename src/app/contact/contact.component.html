@@ -38,9 +38,7 @@ fxLayoutGap="10px">
 
  <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Send us your feedback!</h3>
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }} {{feedbackForm.get('firstname').hasError('required') + " / " + !feedbackForm.get('firstname').pristine }}</p>
-    <p>{{ feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched }} </p>
-    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" *ngIf="!submitting && !submittedData">
       <p>
         <mat-input-container class="half-width" 
           dividerColor="{{ formErrors.firstname ? 'warn' : 'primary' }}">
@@ -104,5 +102,31 @@ fxLayoutGap="10px">
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
     </form>
+    <div *ngIf="submitting">
+      <h3>Submitting form</h3>
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="submittedData">
+        <h3>Your Submission</h3>
+        <p>
+          First Name: {{submittedData.firstname}}
+          <br/>
+          Last Name: {{submittedData.lastname}}
+          <br/>
+          Tel. Number: {{submittedData.telnum}}
+          <br/>
+          Email: {{submittedData.email}}
+          <br/>
+          Contact You? : {{submittedData.agree}}
+          <br/>
+          How?: {{submittedData.contacttype}}
+          <br/>
+          Feedback: {{submittedData.message}}
+        </p>
+    </div>
+    <div *ngIf="errMess">
+      <h2>Error</h2>
+      <h4>{{errMess}}</h4>
+    </div>
  </div>
 </div>

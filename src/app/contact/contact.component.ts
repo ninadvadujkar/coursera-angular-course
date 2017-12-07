@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Feedback, ContactType } from '../shared/feedback';
+import { FeedbackService } from '../services/feedback.service';
+
 import { flyInOut } from '../animations/app.animation';
 @Component({
   selector: 'app-contact',
@@ -19,6 +21,9 @@ export class ContactComponent implements OnInit {
 
   feedbackForm: FormGroup;
   feedback: Feedback;
+  submitting: boolean;
+  submittedData: Feedback;
+  errorMess: string;
   contactType = ContactType;
   formErrors = {
     'firstname': '',
@@ -48,7 +53,7 @@ export class ContactComponent implements OnInit {
     }
   };
 
-  constructor(private _fb: FormBuilder ) { 
+  constructor(private _fb: FormBuilder, private _feedbackService: FeedbackService) { 
     this.createForm();
   }
 
@@ -100,6 +105,21 @@ export class ContactComponent implements OnInit {
       contacttype: 'None',
       message: ''
     });
+    this.submitting = true;
+    this._feedbackService.submitFeedback(this.feedback)
+      .subscribe(
+        submittedData => { 
+          this.submittedData  = submittedData;
+          this.submitting = false;
+          setTimeout(() => {
+            this.submittedData = null;
+          }, 5000)
+        },
+        errorMess => {
+          this.errorMess = errorMess;
+          this.submitting = false;
+        }
+      )
   }
 
   onToggle(e): void {
